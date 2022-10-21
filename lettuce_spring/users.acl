@@ -1,3 +1,0 @@
-ACL SETUSER tenant1 on >tnant@1 ~tenant1:* +get
-ACL SETUSER tenant2 on >tnant@2 ~tenant2:* +get
-ACL SETUSER tenant3 on >tnant@3 ~tenant3:* +get
