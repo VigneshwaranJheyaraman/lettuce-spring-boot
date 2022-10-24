@@ -1,11 +1,15 @@
 package com.vicky.lettuce_spring.configuration;
 
 import io.lettuce.core.ClientOptions;
+import io.lettuce.core.ReadFrom;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
@@ -20,6 +24,9 @@ public class RedisConfiguration {
     private final int port;
     private final String password;
     private final String userName;
+
+    @Autowired
+    private ClusterConfiguration clusterConfiguration;
 
     public RedisConfiguration(@Value("${spring.redis.host}") String url,
                               @Value("${spring.redis.port}") int port,
@@ -41,6 +48,13 @@ public class RedisConfiguration {
         return redisStandaloneConfiguration;
     }
 
+    @Bean
+    public RedisClusterConfiguration redisClusterConfiguration() {
+        RedisClusterConfiguration clusterConfig = new RedisClusterConfiguration(
+            this.clusterConfiguration.getNodes()
+        );
+        return clusterConfig;
+    }
     
     @Bean
     public ClientOptions clientOptions() {
@@ -50,13 +64,24 @@ public class RedisConfiguration {
                 .build();
     }
 
-    @Bean
+    // @Bean
+    // commenting this part to always OPT for REDIS Cluster configuration
     public RedisConnectionFactory connectionFactory(RedisStandaloneConfiguration redisStandaloneConfiguration) {
 
         LettuceClientConfiguration configuration = LettuceClientConfiguration.builder()
                 .clientOptions(clientOptions()).build();
 
         return new LettuceConnectionFactory(redisStandaloneConfiguration, configuration);
+    }
+
+    @Bean
+    public RedisConnectionFactory clusterConnectionFactory(RedisClusterConfiguration redisClusterConfiguration) {
+        LettuceClientConfiguration config = (
+            LettuceClientConfiguration
+            .builder()
+            .readFrom(ReadFrom.REPLICA_PREFERRED)
+            .build());
+        return new LettuceConnectionFactory(redisClusterConfiguration, config);
     }
 
     @Bean

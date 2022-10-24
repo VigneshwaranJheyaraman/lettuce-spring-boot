@@ -31,3 +31,7 @@ redis-cli
 127.0.0.1:6379>get name
 REDIS
 ```
+
+## Redis Cluster configuration
+
+* Added **com.vicky.lettuce_spring.configuration.ClusterConfiguration** to include all the cluster from _application.properties_
