@@ -1,4 +1,4 @@
-package com.vicky.lettuce_spring.configuration;
+package com.tenant.lettuce_spring.configuration;
 
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.ReadFrom;

@@ -8,7 +8,7 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vicky</groupId>
+	<groupId>com.tenant</groupId>
 	<artifactId>lettuce_spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lettuce_spring</name>

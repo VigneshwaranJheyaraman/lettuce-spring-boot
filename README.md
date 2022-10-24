@@ -34,4 +34,4 @@ REDIS
 
 ## Redis Cluster configuration
 
-* Added **com.vicky.lettuce_spring.configuration.ClusterConfiguration** to include all the cluster from _application.properties_
+* Added **com.tenant.lettuce_spring.configuration.ClusterConfiguration** to include all the cluster from _application.properties_

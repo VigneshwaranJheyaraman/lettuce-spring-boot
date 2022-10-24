@@ -1,4 +1,4 @@
-package com.vicky.lettuce_spring;
+package com.tenant.lettuce_spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

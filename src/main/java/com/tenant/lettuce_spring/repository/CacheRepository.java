@@ -1,4 +1,4 @@
-package com.vicky.lettuce_spring.repository;
+package com.tenant.lettuce_spring.repository;
 
 import java.util.Optional;
 

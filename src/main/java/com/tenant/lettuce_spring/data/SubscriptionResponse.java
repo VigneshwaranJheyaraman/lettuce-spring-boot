@@ -1,4 +1,4 @@
-package com.vicky.lettuce_spring.data;
+package com.tenant.lettuce_spring.data;
 
 import java.io.Serializable;
 
